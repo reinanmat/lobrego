@@ -1,0 +1,11 @@
+[settings]
+experimental = true
+python.uv_venv_auto = true
+
+[tools]
+python = "3.12.12"
+uv = "latest"
+
+[tasks.run]
+description = "Run the application"
+run = "python app/main.py"
