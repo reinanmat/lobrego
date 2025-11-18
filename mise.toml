@@ -3,6 +3,9 @@ experimental = true
 python.uv_venv_auto = true
 
 [tools]
+"aqua:docker/buildx" = "0.29.1"
+"aqua:docker/cli" = "28.5.1"
+"aqua:docker/compose" = "2.40.0"
 python = "3.12.12"
 uv = "latest"
 
