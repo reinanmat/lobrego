@@ -1,0 +1,4 @@
+services:
+  lobrego-app:
+    build:
+      context: ./
