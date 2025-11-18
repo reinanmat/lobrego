@@ -14,6 +14,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 FROM python:3.12-slim-bookworm AS runtime
 COPY --from=builder /app /app
+WORKDIR /app
 ENV PATH="/app/.venv/bin:$PATH"
-CMD ["python", "/app/app/main.py"]
+CMD ["python", "src/app/main.py"]
 # CMD ["fastapi", "dev", "--host", "0.0.0.0", "/app/src/main.py"]
