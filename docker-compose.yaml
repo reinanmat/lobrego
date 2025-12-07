@@ -1,4 +1,36 @@
 services:
+  mariadb:
+    container_name: lobrego-database
+    image: mariadb:11.4
+    environment:
+      MARIADB_DATABASE: ${DATABASE_NAME}
+      MARIADB_USER: ${DATABASE_USERNAME}
+      MARIADB_PASSWORD: ${DATABASE_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD:-root}
+    volumes:
+      - db-volume:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    ports:
+      - 54321:3306
+    networks:
+      - app-network
+
   lobrego-app:
+    container_name: lobrego-app
     build:
       context: ./
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    networks:
+      - app-network
+
+volumes:
+  db-volume:
+
+networks:
+  app-network:
