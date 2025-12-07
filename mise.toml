@@ -12,3 +12,10 @@ uv = "latest"
 [tasks.run]
 description = "Run the application"
 run = "uv run src/app/main.py"
+
+[tasks.db]
+description = "Enter the database"
+run = '''
+docker exec -it lobrego-database sh -c "mariadb -u${DATABASE_USERNAME} -p${DATABASE_PASSWORD} -h127.0.0.1 ${DATABASE_NAME}"
+'''
+env = { _.file = './.env'}
