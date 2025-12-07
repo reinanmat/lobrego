@@ -6,7 +6,7 @@ services:
       MARIADB_DATABASE: ${DATABASE_NAME}
       MARIADB_USER: ${DATABASE_USERNAME}
       MARIADB_PASSWORD: ${DATABASE_PASSWORD}
-      MARIADB_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD:-root}
+      MARIADB_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
     volumes:
       - db-volume:/var/lib/mysql
     healthcheck:
